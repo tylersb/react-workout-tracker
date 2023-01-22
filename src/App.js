@@ -2,6 +2,7 @@ import './App.css'
 import Favorites from './components/Favorites'
 import Workouts from './components/Workouts'
 import { useState } from 'react'
+import Navbar from './components/Navbar'
 
 function App() {
   const [savedWorkouts, setSavedWorkouts] = useState([
@@ -10,6 +11,16 @@ function App() {
       exercise: 'Bench Press',
       weight: 135,
       reps: 10
+    }
+  ])
+
+  const [favorites, setFavorites] = useState([
+    {
+      name: 'Bench Press',
+      muscle: 'Chest',
+      equipment: 'Barbell',
+      instructions:
+        'Lie on your back on a flat bench. Grasp a barbell with an overhand grip that is slightly wider than shoulder width. Unrack the bar and hold it straight over you with your arms locked. Lower the bar to your chest by flexing your elbows and pectoral muscles. Press the bar back to the starting position.'
     }
   ])
 
@@ -29,19 +40,24 @@ function App() {
     setSavedWorkouts([...savedWorkouts, newWorkout])
   }
 
+  // const handleFavorite = () => {
+
+  // }
+
   return (
     <div className="App">
-      <div class="container">
-        <div class="row">
-          <div class="col-3">
+    <Navbar />
+      <div className="container">
+        <div className="row">
+          <div className="col-3">
             <form onSubmit={handleSubmit}>
-              <div class="row form-group">
-                <label for="date" class="col-auto form-label">
+              <div className="row form-group">
+                <label htmlFor="date" className="col-auto form-label">
                   Date
                 </label>
                 <input
                   type="date"
-                  class="col-auto form-control"
+                  className="col-auto form-control"
                   id="date"
                   name="date"
                   value={date}
@@ -50,13 +66,13 @@ function App() {
                 />
               </div>
 
-              <div class="row form-group">
-                <label for="exercise" class="col-auto form-label">
+              <div className="row form-group">
+                <label htmlFor="exercise" className="col-auto form-label">
                   Exercise Name
                 </label>
                 <input
                   type="text"
-                  class="col-auto form-control"
+                  className="col-auto form-control"
                   id="exercise"
                   name="exercise"
                   value={exercise}
@@ -65,13 +81,13 @@ function App() {
                 />
               </div>
 
-              <div class="row form-group">
-                <label for="weight" class="col-auto form-label">
+              <div className="row form-group">
+                <label htmlFor="weight" className="col-auto form-label">
                   Weight
                 </label>
                 <input
                   type="number"
-                  class="col-auto form-control"
+                  className="col-auto form-control"
                   id="weight"
                   name="weight"
                   value={weight}
@@ -80,13 +96,13 @@ function App() {
                 />
               </div>
 
-              <div class="row form-group">
-                <label for="reps" class="col-auto form-label">
+              <div className="row form-group">
+                <label htmlFor="reps" className="col-auto form-label">
                   Reps
                 </label>
                 <input
                   type="number"
-                  class="col-auto form-control"
+                  className="col-auto form-control"
                   id="reps"
                   name="reps"
                   value={reps}
@@ -96,13 +112,13 @@ function App() {
               </div>
 
               <input
-              class="btn btn-primary"
+              className="btn btn-primary"
               type="submit"                
               />
             </form>
           </div>
-          <div class="col overflow-auto" style={{ height: '400px' }}>
-            <Favorites />
+          <div className="col overflow-auto" style={{ height: '400px' }}>
+            <Favorites favorites={favorites} />
           </div>
           <Workouts savedWorkouts={savedWorkouts} />
         </div>

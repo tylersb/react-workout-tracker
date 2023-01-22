@@ -1,13 +1,13 @@
 export default function Workouts(props) {
   const workouts = props.savedWorkouts.map((workout, index) => {
     return (
-      <tr>
+      <tr key={`workout-${index}`}>
         <td>{workout.date}</td>
         <td>{workout.exercise}</td>
         <td>{workout.weight}</td>
         <td>{workout.reps}</td>
         <td>
-          <a href={`/profile/workouts/${index}`} class="btn btn-primary">
+          <a href={`/profile/workouts/${index}`} className="btn btn-primary">
             Edit
           </a>
         </td>
@@ -16,9 +16,9 @@ export default function Workouts(props) {
   })
 
   return (
-    <div class="container">
+    <div className="container">
       <h3>My Workout History</h3>
-      <table class="table text-white">
+      <table className="table text-white">
         <thead>
           <tr>
             <th scope="col">Date</th>

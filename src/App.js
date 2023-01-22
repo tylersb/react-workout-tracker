@@ -14,15 +14,7 @@ function App() {
     }
   ])
 
-  const [favorites, setFavorites] = useState([
-    {
-      name: 'Bench Press',
-      muscle: 'Chest',
-      equipment: 'Barbell',
-      instructions:
-        'Lie on your back on a flat bench. Grasp a barbell with an overhand grip that is slightly wider than shoulder width. Unrack the bar and hold it straight over you with your arms locked. Lower the bar to your chest by flexing your elbows and pectoral muscles. Press the bar back to the starting position.'
-    }
-  ])
+  const [favorites, setFavorites] = useState([])
 
   const [date, setDate] = useState('')
   const [exercise, setExercise] = useState('')
@@ -43,7 +35,7 @@ function App() {
   const handleFavorite = (addFavorite) => {
     const newFavorites = [...favorites]
     const favoriteExists = newFavorites.indexOf(addFavorite)
-    if(favoriteExists > 0 ) {
+    if(favoriteExists >= 0 ) {
       newFavorites.splice(favoriteExists, 1)
     } else {
       newFavorites.push(addFavorite)

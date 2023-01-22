@@ -1,6 +1,6 @@
 import Exercises from './Exercises'
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <div>
       <button
@@ -30,7 +30,7 @@ export default function Navbar() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <Exercises />
+          <Exercises favorites={props.favorites} handleFavorite={props.handleFavorite}/>
         </div>
       </div>
     </div>

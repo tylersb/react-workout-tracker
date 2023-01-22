@@ -1,7 +1,7 @@
 import exerciseData from '../exerciseData.js'
 import { useState } from 'react'
 
-export default function Exercises() {
+export default function Exercises(props) {
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [muscle, setMuscle] = useState('')
@@ -36,7 +36,11 @@ export default function Exercises() {
               <input
                 type="submit"
                 className="btn btn-primary"
-                value="Add to Favorites"
+                value={props.favorites.includes(exercise) ? 'Unfavorite' : 'Favorite'}
+                onClick={(e) => {
+                  e.preventDefault()
+                  props.handleFavorite(exercise)
+                }}
               />
             </form>
           </div>

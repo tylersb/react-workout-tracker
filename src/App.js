@@ -40,13 +40,20 @@ function App() {
     setSavedWorkouts([...savedWorkouts, newWorkout])
   }
 
-  // const handleFavorite = () => {
-
-  // }
+  const handleFavorite = (addFavorite) => {
+    const newFavorites = [...favorites]
+    const favoriteExists = newFavorites.indexOf(addFavorite)
+    if(favoriteExists > 0 ) {
+      newFavorites.splice(favoriteExists, 1)
+    } else {
+      newFavorites.push(addFavorite)
+    }
+    setFavorites(newFavorites)
+  }
 
   return (
     <div className="App">
-    <Navbar />
+    <Navbar handleFavorite={handleFavorite} favorites={favorites}/>
       <div className="container">
         <div className="row">
           <div className="col-3">

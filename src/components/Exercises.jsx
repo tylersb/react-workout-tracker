@@ -2,19 +2,21 @@ import exerciseData from '../exerciseData.js'
 import { useState } from 'react'
 
 export default function Exercises(props) {
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [muscle, setMuscle] = useState('')
-  const [equipment, setEquipment] = useState('')
-  const [difficulty, setDifficulty] = useState('')
+  const [filter, setFilter] = useState({
+    name: '',
+    type: '',
+    muscle: '',
+    equipment: '',
+    difficulty: '',
+  })
 
   const filteredExercises = exerciseData.filter((exercise) => {
     return (
-      exercise.name.toLowerCase().includes(name.toLowerCase()) &&
-      exercise.type.toLowerCase().includes(type.toLowerCase()) &&
-      exercise.muscle.toLowerCase().includes(muscle.toLowerCase()) &&
-      exercise.equipment.toLowerCase().includes(equipment.toLowerCase()) &&
-      exercise.difficulty.toLowerCase().includes(difficulty.toLowerCase())
+      exercise.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+      exercise.type.toLowerCase().includes(filter.type.toLowerCase()) &&
+      exercise.muscle.toLowerCase().includes(filter.muscle.toLowerCase()) &&
+      exercise.equipment.toLowerCase().includes(filter.equipment.toLowerCase()) &&
+      exercise.difficulty.toLowerCase().includes(filter.difficulty.toLowerCase())
     )
   })
 
@@ -65,33 +67,33 @@ export default function Exercises(props) {
       <div className="row">
         <input
           type="text"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setFilter({ ...filter, name: e.target.value })}
           className="col form-control"
-          value={name}
+          value={filter.name}
         />
         <input
           type="text"
-          onChange={(e) => setType(e.target.value)}
+          onChange={(e) => setFilter({ ...filter, type: e.target.value })}
           className="col form-control"
-          value={type}
+          value={filter.type}
         />
         <input
           type="text"
-          onChange={(e) => setMuscle(e.target.value)}
+          onChange={(e) => setFilter({ ...filter, muscle: e.target.value })}
           className="col form-control"
-          value={muscle}
+          value={filter.muscle}
         />
         <input
           type="text"
-          onChange={(e) => setEquipment(e.target.value)}
+          onChange={(e) => setFilter({ ...filter, equipment: e.target.value })}
           className="col form-control"
-          value={equipment}
+          value={filter.equipment}
         />
         <input
           type="text"
-          onChange={(e) => setDifficulty(e.target.value)}
+          onChange={(e) => setFilter({ ...filter, difficulty: e.target.value })}
           className="col form-control"
-          value={difficulty}
+          value={filter.difficulty}
         />
       </div>
       <hr/>

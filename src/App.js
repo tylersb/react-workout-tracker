@@ -16,20 +16,17 @@ function App() {
 
   const [favorites, setFavorites] = useState([])
 
-  const [date, setDate] = useState('')
-  const [exercise, setExercise] = useState('')
-  const [weight, setWeight] = useState('')
-  const [reps, setReps] = useState('')
+  const [newWorkout, setNewWorkout] = useState({
+    date: '',
+    exercise: '',
+    weight: '',
+    reps: '',
+  })
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const newWorkout = {
-      date: date,
-      exercise: exercise,
-      weight: weight,
-      reps: reps
-    }
-    setSavedWorkouts([...savedWorkouts, newWorkout])
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const updatedWorkout = [newWorkout, ...savedWorkouts]
+    setSavedWorkouts(updatedWorkout)
   }
 
   const handleFavorite = (addFavorite) => {
@@ -59,8 +56,8 @@ function App() {
                   className="col-auto form-control"
                   id="date"
                   name="date"
-                  value={date}
-                  onChange={(event) => setDate(event.target.value)}
+                  value={newWorkout.date}
+                  onChange={(event) => setNewWorkout({ ...newWorkout, date: event.target.value })}
                   required
                 />
               </div>
@@ -74,8 +71,8 @@ function App() {
                   className="col-auto form-control"
                   id="exercise"
                   name="exercise"
-                  value={exercise}
-                  onChange={(event) => setExercise(event.target.value)}
+                  value={newWorkout.exercise}
+                  onChange={(event) => setNewWorkout({ ...newWorkout, exercise: event.target.value })}
                   required
                 />
               </div>
@@ -89,8 +86,8 @@ function App() {
                   className="col-auto form-control"
                   id="weight"
                   name="weight"
-                  value={weight}
-                  onChange={(event) => setWeight(event.target.value)}
+                  value={newWorkout.weight}
+                  onChange={(event) => setNewWorkout({ ...newWorkout, weight: event.target.value })}
                   required
                 />
               </div>
@@ -104,8 +101,8 @@ function App() {
                   className="col-auto form-control"
                   id="reps"
                   name="reps"
-                  value={reps}
-                  onChange={(event) => setReps(event.target.value)}
+                  value={newWorkout.reps}
+                  onChange={(event) => setNewWorkout({ ...newWorkout, reps: event.target.value })}
                   required
                 />
               </div>

@@ -125,7 +125,7 @@ function App() {
           <div className="col overflow-auto" style={{ height: '400px' }}>
             <Favorites favorites={favorites} />
           </div>
-          <Workouts savedWorkouts={savedWorkouts} />
+          <Workouts savedWorkouts={savedWorkouts} setSavedWorkouts={setSavedWorkouts} />
         </div>
       </div>
     </div>

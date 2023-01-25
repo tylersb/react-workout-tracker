@@ -1,5 +1,9 @@
 export default function Workouts(props) {
-  const workouts = props.savedWorkouts.map((workout, index) => {
+  const sortedWorkouts = props.savedWorkouts.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date)
+  })
+  const workouts = sortedWorkouts.map((workout, index) => {
+    workout.date = new Date(workout.date).toUTCString().slice(0, 16)
     return (
       <tr key={`workout-${index}`}>
         <td>{workout.date}</td>

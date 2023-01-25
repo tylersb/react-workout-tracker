@@ -1,16 +1,17 @@
 import './App.css'
 import Favorites from './components/Favorites'
 import Workouts from './components/Workouts'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
+import axios from 'axios'
 
 function App() {
   const [savedWorkouts, setSavedWorkouts] = useState([
     {
-      date: '2023-01-09',
-      exercise: 'Bench Press',
-      weight: 135,
-      reps: 10
+      date: '',
+      exercise: '',
+      weight: null,
+      reps: null
     }
   ])
 
@@ -23,10 +24,18 @@ function App() {
     reps: '',
   })
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const getWorkouts = async () => {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/workouts`)
+      setSavedWorkouts(response.data)
+    }
+    getWorkouts()
+  }, [])
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const updatedWorkout = [newWorkout, ...savedWorkouts]
-    setSavedWorkouts(updatedWorkout)
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/workouts`, newWorkout)
+    setSavedWorkouts(response.data)
   }
 
   const handleFavorite = (addFavorite) => {

@@ -41,7 +41,7 @@ export default function Workouts(props) {
     workout.inputDate = new Date(workout.date)
     let day = workout.inputDate.getUTCDate()
     let month = workout.inputDate.getUTCMonth() + 1
-    let year = workout.inputDate.getUTCFullYear()
+    const year = workout.inputDate.getUTCFullYear()
     if (month < 10) {
       month = '0' + month
     }
@@ -49,7 +49,6 @@ export default function Workouts(props) {
       day = '0' + day
     }
     workout.inputDate = `${year}-${month}-${day}`
-    workout.cleanDate = new Date(workout.date).toUTCString().slice(0, 16)
     if (editWorkout === workout._id) {
       return (
         <tr key={`workout-${index}`}>
@@ -104,9 +103,10 @@ export default function Workouts(props) {
         </tr>
       )
     } else {
+      workout.date = new Date(workout.date).toUTCString().slice(0, 16)
       return (
         <tr key={`workout-${index}`}>
-          <td>{workout.cleanDate}</td>
+          <td>{workout.date}</td>
           <td>{workout.exercise}</td>
           <td>{workout.weight}</td>
           <td>{workout.reps}</td>

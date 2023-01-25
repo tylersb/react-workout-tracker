@@ -13,7 +13,7 @@ export default function Workouts(props) {
   const handleEditClick = (e) => {
     setEditWorkout(e._id)
     setForm({
-      date: e.inputDate,
+      date: inputDate(e.date),
       exercise: e.exercise,
       weight: e.weight,
       reps: e.reps,
@@ -37,18 +37,21 @@ export default function Workouts(props) {
     return new Date(b.date) - new Date(a.date)
   })
 
-  const workouts = sortedWorkouts.map((workout, index) => {
-    workout.inputDate = new Date(workout.date)
-    let day = workout.inputDate.getUTCDate()
-    let month = workout.inputDate.getUTCMonth() + 1
-    const year = workout.inputDate.getUTCFullYear()
+  const inputDate = (date) => {
+    date = new Date(date)
+    let day = date.getUTCDate()
+    let month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
     if (month < 10) {
       month = '0' + month
     }
     if (day < 10) {
       day = '0' + day
     }
-    workout.inputDate = `${year}-${month}-${day}`
+    return `${year}-${month}-${day}`
+  }
+
+  const workouts = sortedWorkouts.map((workout, index) => {
     if (editWorkout === workout._id) {
       return (
         <tr key={`workout-${index}`}>

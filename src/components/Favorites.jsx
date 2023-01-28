@@ -17,13 +17,13 @@ export default function Favorites(props) {
             className="btn btn-primary"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#exerciseInstructions{index}"
+            data-bs-target={`#exerciseInstructions${index}`}
             aria-expanded="false"
             aria-controls="ExerciseInstructions"
           >
             Click for instructions
           </button>
-          <div className="collapse" id="exerciseInstructions{index}">
+          <div className="collapse" id={`exerciseInstructions${index}`}>
             <div className="card card-body bg-dark text-white">
               {exercise.instructions}
             </div>
